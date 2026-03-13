@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ananya Singh — Science Communication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0e0d0a;
+      --paper: #f5f0e8;
+      --cream: #ede7d4;
+      --gold: #c8953a;
+      --gold-light: #e8b96a;
+      --rust: #b8451a;
+      --teal: #1a6b6b;
+      --teal-light: #2a9090;
+      --muted: #7a7265;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s ease;
+      mix-blend-mode: multiply;
+      opacity: 0.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      mix-blend-mode: multiply;
+    }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+    .hero-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--ink);
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--rust);
+    }
+    .hero-tagline {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 380px;
+      opacity: 0;
+      animation: fadeUp 1s 0.7s forwards;
+    }
+    .hero-cta {
+      margin-top: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.9s forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 1rem 2rem;
+      border: none;
+      cursor: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .btn-outline {
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--ink);
+      margin-left: 1rem;
+    }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-visual {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Animated physics SVG background */
+    .orbital-system {
+      width: 500px; height: 500px;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1.5s 1s forwards;
+    }
+    .orbit-ring {
+      position: absolute;
+      border: 1px solid rgba(200, 149, 58, 0.2);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .orbit-ring:nth-child(1) { width: 120px; height: 120px; border-color: rgba(200,149,58,0.5); }
+    .orbit-ring:nth-child(2) { width: 220px; height: 220px; }
+    .orbit-ring:nth-child(3) { width: 340px; height: 340px; border-style: dashed; }
+    .orbit-ring:nth-child(4) { width: 460px; height: 460px; border-color: rgba(200,149,58,0.1); }
+
+    .nucleus {
+      position: absolute;
+      width: 18px; height: 18px;
+      background: var(--gold);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 30px rgba(200, 149, 58, 0.6), 0 0 60px rgba(200,149,58,0.2);
+    }
+
+    .electron {
+      position: absolute;
+      width: 8px; height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      box-shadow: 0 0 10px rgba(26, 107, 107, 0.8);
+    }
+    .electron:nth-of-type(1) { animation: orbit1 3s linear infinite; }
+    .electron:nth-of-type(2) { animation: orbit2 5s linear infinite; background: var(--rust); box-shadow: 0 0 10px rgba(184,69,26,0.8); }
+    .electron:nth-of-type(3) { animation: orbit3 8s linear infinite; }
+
+    @keyframes orbit1 {
+      from { transform: rotate(0deg) translateX(60px) translate(-50%,-50%); }
+      to   { transform: rotate(360deg) translateX(60px) translate(-50%,-50%); }
+    }
+    @keyframes orbit2 {
+      from { transform: rotate(90deg) translateX(110px) translate(-50%,-50%); }
+      to   { transform: rotate(450deg) translateX(110px) translate(-50%,-50%); }
+    }
+    @keyframes orbit3 {
+      from { transform: rotate(200deg) translateX(170px) translate(-50%,-50%); }
+      to   { transform: rotate(560deg) translateX(170px) translate(-50%,-50%); }
+    }
+
+    /* Floating text elements in hero */
+    .floating-formula {
+      position: absolute;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(14, 13, 10, 0.15);
+      pointer-events: none;
+      animation: floatAround 12s ease-in-out infinite;
+    }
+    .floating-formula:nth-child(2) { top: 15%; left: 55%; animation-delay: -3s; font-size: 1rem; }
+    .floating-formula:nth-child(3) { top: 70%; left: 65%; animation-delay: -7s; }
+    .floating-formula:nth-child(4) { top: 30%; left: 80%; animation-delay: -5s; font-size: 0.6rem; }
+    .floating-formula:nth-child(5) { top: 80%; left: 50%; animation-delay: -2s; }
+
+    @keyframes floatAround {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-15px) rotate(2deg); }
+      66% { transform: translateY(8px) rotate(-1deg); }
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeIn 1s 1.5s forwards;
+    }
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--muted);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--gold);
+      animation: scrollLine 2s 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      from { left: -100%; }
+      to { left: 100%; }
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cream), transparent);
+      margin: 0 4rem;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 8rem 6rem;
+      position: relative;
+    }
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      max-width: 600px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 5rem;
+      border: 1px solid var(--cream);
+    }
+    .service-card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--cream);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { background: var(--cream); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-number {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .service-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .service-desc {
+      font-size: 0.75rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    /* ABOUT / BIO */
+    .about {
+      padding: 8rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+      align-items: start;
+      background: var(--cream);
+    }
+    .about-sticky {
+      position: sticky;
+      top: 8rem;
+    }
+    .about-portrait {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .portrait-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--ink) 60%);
+    }
+    .portrait-initials {
+      font-family: 'Fraunces', serif;
+      font-size: 5rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-weight: 300;
+      font-style: italic;
+    }
+    .portrait-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.4);
+    }
+    .portrait-decoration {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px; height: 60px;
+      border: 1px solid rgba(200,149,58,0.4);
+      border-radius: 50%;
+    }
+
+    .about-content {}
+    .about-intro {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .about-intro em { font-style: italic; color: var(--rust); }
+    .about-body {
+      font-size: 0.8rem;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .awards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .award-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--paper);
+      border-left: 3px solid var(--gold);
+      transition: border-color 0.3s;
+    }
+    .award-item:hover { border-color: var(--rust); }
+    .award-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .award-text {}
+    .award-title {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+    .award-meta {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .award-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .award-link:hover { border-color: var(--gold); }
+
+    /* CREDENTIALS */
+    .credentials {
+      padding: 8rem 6rem;
+    }
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 4rem;
+    }
+    .credential-block {
+      padding: 2.5rem;
+      border: 1px solid var(--cream);
+      position: relative;
+    }
+    .credential-block::after {
+      content: attr(data-num);
+      position: absolute;
+      top: 2rem; right: 2rem;
+      font-family: 'Fraunces', serif;
+      font-size: 4rem;
+      color: var(--cream);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .credential-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .credential-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .credential-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* TOPICS */
+    .topics {
+      background: var(--ink);
+      padding: 8rem 6rem;
+      color: var(--paper);
+    }
+    .topics .section-label { color: var(--gold-light); }
+    .topics .section-title { color: var(--paper); }
+    .topics .section-title em { color: var(--gold-light); }
+
+    .topics-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+    .topic-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid rgba(245, 240, 232, 0.15);
+      color: rgba(245, 240, 232, 0.6);
+      cursor: none;
+      transition: all 0.3s;
+    }
+    .topic-tag:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+    .topic-tag.featured {
+      background: rgba(200, 149, 58, 0.1);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 8rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+    .contact-headline {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .contact-headline em { font-style: italic; color: var(--rust); }
+    .contact-sub {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 360px;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input, .form-textarea {
+      background: var(--cream);
+      border: 1px solid var(--cream);
+      padding: 1rem 1.25rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.3s;
+      cursor: none;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-textarea { height: 120px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--cream);
+      padding: 3rem 6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(14,13,10,0.08);
+    }
+    .footer-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .footer-meta {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 9rem 2.5rem 5rem; }
+      .hero-right { height: 350px; }
+      .services { padding: 5rem 2.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--cream); }
+      .about { padding: 5rem 2.5rem; grid-template-columns: 1fr; gap: 3rem; }
+      .about-sticky { position: relative; top: auto; }
+      .about-portrait { max-width: 280px; }
+      .credentials { padding: 5rem 2.5rem; }
+      .credentials-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .topics { padding: 5rem 2.5rem; }
+      .contact { padding: 5rem 2.5rem; grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 2rem 2.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+      .hero-scroll-hint { left: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Ananya Singh</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Science Communication · RWTH Aachen</p>
+      <h1 class="hero-name">
+        The art of making<br>
+        science<br>
+        <em>understood.</em>
+      </h1>
+      <p class="hero-tagline">
+        Whether presented on stage, visualised as an infographic, or written as a text — science belongs to everyone. I make it accessible.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn">Work with me →</a>
+        <a href="#services" class="btn btn-outline">Services</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <span class="floating-formula">E = mc²</span>
+        <span class="floating-formula">ψ(x,t)</span>
+        <span class="floating-formula">ℏ∂ψ/∂t</span>
+        <span class="floating-formula">∇²φ = 0</span>
+        <span class="floating-formula">e⁻ↄe⁺</span>
+        <div class="orbital-system">
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring"></div>
+          <div class="nucleus"></div>
+          <div class="electron"></div>
+          <div class="electron"></div>
+          <div class="electron"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="reveal">
+      <p class="section-label">What I offer</p>
+      <h2 class="section-title">Three ways to make <em>complexity</em><br>shine.</h2>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <p class="service-number">01 —</p>
+        <span class="service-icon">🎤</span>
+        <h3 class="service-name">Stage Talks & Keynotes</h3>
+        <p class="service-desc">From Science Slams to keynote lectures — I bring physics to the stage. Energy, clarity, and genuine enthusiasm for the invisible forces that govern our world.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-number">02 —</p>
+        <span class="service-icon">📊</span>
+        <h3 class="service-name">Infographics & Visualisation</h3>
+        <p class="service-desc">Quantum physics as an image. Complex data as a story. I create visual explanations that stick — not through oversimplification, but through genuine clarity.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-number">03 —</p>
+        <span class="service-icon">✍️</span>
+        <h3 class="service-name">Science Writing & Content</h3>
+        <p class="service-desc">Articles, blog posts, educational materials. I write with precision and life, free of jargon — for everyone who wants to understand what happens inside the world's labs.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-sticky">
+      <div class="reveal">
+        <p class="section-label">About me</p>
+        <div class="about-portrait">
+          <div class="portrait-placeholder">
+            <div class="portrait-initials">AS</div>
+            <div class="portrait-label">M.Sc. Ananya Singh</div>
+          </div>
+          <div class="portrait-decoration"></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="reveal">
+        <p class="section-label">Background</p>
+        <p class="about-intro">
+          Physicist. Lecturer. <em>Storyteller</em><br>
+          of the quantum world.
+        </p>
+        <p class="about-body">
+          I am a PhD candidate at the Chair of Experimental Physics and the II. Institute of Physics at RWTH Aachen University. My research focuses on the quantum Hall effect in graphene: how electrons behave on a "dancing" substrate — and how we can harness that behaviour to eliminate electrical resistance.<br><br>
+          I hold two Master's degrees — in Experimental Physics and Theoretical Physics — and I firmly believe that good science must be shared. Available online for collaborations worldwide.
+        </p>
+      </div>
+
+      <div class="awards reveal">
+        <div class="award-item">
+          <span class="award-icon">🏆</span>
+          <div class="award-text">
+            <div class="award-title">Best Supportive Teaching Award</div>
+            <div class="award-meta">Physics Teaching Award · RWTH Aachen · 2021</div>
+            <a href="#" class="award-link">View Award →</a>
+          </div>
+        </div>
+        <div class="award-item">
+          <span class="award-icon">🎤</span>
+          <div class="award-text">
+            <div class="award-title">Science Slam Winner</div>
+            <div class="award-meta">Cologne · January 2025 · "The Dance of Electron Quantum"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="credentials">
+    <div class="reveal">
+      <p class="section-label">Academic Background</p>
+      <h2 class="section-title">Grounded in <em>theory</em><br>and experiment.</h2>
+    </div>
+    <div class="credentials-grid reveal">
+      <div class="credential-block" data-num="①">
+        <p class="credential-label">Degrees</p>
+        <h3 class="credential-title">2× M.Sc. Physics</h3>
+        <p class="credential-sub">RWTH Aachen University<br>Experimental Physics & Theoretical Physics</p>
+      </div>
+      <div class="credential-block" data-num="②">
+        <p class="credential-label">Research</p>
+        <h3 class="credential-title">PhD Candidate</h3>
+        <p class="credential-sub">Chair of Experimental Physics<br>II. Institute of Physics · RWTH Aachen<br>Quantum Hall Effect in Graphene & Superconductivity</p>
+      </div>
+      <div class="credential-block" data-num="③">
+        <p class="credential-label">Teaching</p>
+        <h3 class="credential-title">Instructor & Science Mentor</h3>
+        <p class="credential-sub">Experimental Physics · Theoretical Physics<br>Award-winning lecturer, 2021</p>
+      </div>
+      <div class="credential-block" data-num="④">
+        <p class="credential-label">Communication</p>
+        <h3 class="credential-title">Science Slam & Outreach</h3>
+        <p class="credential-sub">Award-winning Science Slam performer<br>Specialised in quantum physics for broad audiences</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="credentials" id="research" style="background: var(--cream);">
+    <div class="reveal">
+      <p class="section-label">PhD Research</p>
+      <h2 class="section-title">The <em>dance</em> of electrons —<br>what's really going on.</h2>
+    </div>
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="reveal">
+      <div class="credential-block" data-num="e⁻">
+        <p class="credential-label">Graphene</p>
+        <h3 class="credential-title">Electrons with no effective mass</h3>
+        <p class="credential-sub">In graphene — a single layer of carbon atoms — electrons travel at 1/100th the speed of light and behave as massless particles. Strong, flexible, light on their feet: perfect for dancing.</p>
+      </div>
+      <div class="credential-block" data-num="B">
+        <p class="credential-label">Quantum Hall Effect</p>
+        <h3 class="credential-title">Conductor and insulator at once</h3>
+        <p class="credential-sub">Under a strong magnetic field, the bulk of the material becomes an insulator — but electrons at the edges conduct with zero resistance. One material that simultaneously insulates and conducts.</p>
+      </div>
+      <div class="credential-block" data-num="↑↓">
+        <p class="credential-label">Spin Transport</p>
+        <h3 class="credential-title">Spin as the key</h3>
+        <p class="credential-sub">When the substrate itself starts "dancing" (SrTiO₃), electrons decouple from one another. Each electron discovers its own spin — and opposite spin types flow in opposite directions, opening a path to dissipationless transport.</p>
+      </div>
+      <div class="credential-block" data-num="∞">
+        <p class="credential-label">Superconductivity</p>
+        <h3 class="credential-title">Cooper pairs & zero resistance</h3>
+        <p class="credential-sub">Electrons that fall in love: Cooper pairs overcome material defects with zero resistance. The open question — what happens when a lone electron meets a superconducting pair? That's what we're finding out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section class="topics" id="topics">
+    <div class="reveal">
+      <p class="section-label">Areas of Expertise</p>
+      <h2 class="section-title">What I <em>speak</em><br>and write about.</h2>
+    </div>
+    <div class="topics-list reveal">
+      <span class="topic-tag featured">Quantum Mechanics</span>
+      <span class="topic-tag featured">Electron Dynamics</span>
+      <span class="topic-tag">High-Energy Physics</span>
+      <span class="topic-tag">Particle Physics</span>
+      <span class="topic-tag featured">Science Communication</span>
+      <span class="topic-tag">Experimental Physics</span>
+      <span class="topic-tag">Theoretical Physics</span>
+      <span class="topic-tag">CERN & Large Hadron Collider</span>
+      <span class="topic-tag">Science & Society</span>
+      <span class="topic-tag">Physics in Everyday Life</span>
+      <span class="topic-tag">Women in Science</span>
+      <span class="topic-tag">Science Slam</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="contact-headline">
+        Let's tell<br>
+        <em>science</em><br>
+        stories<br>
+        together.
+      </h2>
+      <p class="contact-sub">
+        Whether for talks, workshops, infographics or written content — I'm available online and look forward to hearing from you.
+      </p>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input class="form-input" type="text" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">I'm interested in</label>
+        <input class="form-input" type="text" placeholder="Talk, infographic, article, mentoring…" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell me about your project…"></textarea>
+      </div>
+      <button class="btn" style="align-self: flex-start;">Send message →</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Ananya Singh</div>
+    <div class="footer-meta">M.Sc. · PhD Candidate · RWTH Aachen · Online</div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animate() {
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animate);
+    })();
+    document.querySelectorAll('a, button, .topic-tag, .service-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.opacity = '1'; });
+      el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.6'; });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
