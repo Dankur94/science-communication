@@ -680,6 +680,84 @@
       transform: none;
     }
 
+    /* FEEDBACK / TESTIMONIALS */
+    .feedback {
+      padding: 8rem 6rem;
+      background: var(--cream);
+    }
+    .feedback-intro {
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 560px;
+      margin-top: 1.5rem;
+    }
+    .feedback-categories {
+      display: flex;
+      gap: 1rem;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+    .feedback-cat-btn {
+      font-family: "DM Mono", monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: none;
+      transition: all 0.3s;
+    }
+    .feedback-cat-btn:hover,
+    .feedback-cat-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .feedback-card {
+      background: var(--paper);
+      padding: 2.5rem;
+      border-left: 3px solid var(--gold);
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feedback-card:hover {
+      border-color: var(--rust);
+      transform: translateY(-3px);
+    }
+    .feedback-card::before {
+      content: "C";
+      font-family: "Fraunces", serif;
+      font-size: 3rem;
+      color: var(--cream);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .feedback-quote {
+      font-size: 0.78rem;
+      line-height: 1.9;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .feedback-author {
+      margin-top: 1.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .feedback-group { display: block; }
+    .feedback-group.hidden { display: none; }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 2rem; }
@@ -696,6 +774,10 @@
       .credentials { padding: 5rem 2.5rem; }
       .credentials-grid { grid-template-columns: 1fr; gap: 2rem; }
       .topics { padding: 5rem 2.5rem; }
+      .feedback { padding: 5rem 2.5rem; }
+      .feedback-grid { grid-template-columns: 1fr; }
+      .feedback-card { padding: 2rem 1.5rem; }
+      .feedback-categories { flex-direction: column; gap: 0.5rem; }
       .contact { padding: 5rem 2.5rem; grid-template-columns: 1fr; gap: 3rem; }
       footer { padding: 2rem 2.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
       .hero-scroll-hint { left: 2.5rem; }
@@ -714,6 +796,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#topics">Topics</a></li>
+      <li><a href="#feedback">Feedback</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -921,6 +1004,71 @@
     </div>
   </section>
 
+
+  <div class="section-divider"></div>
+
+  <!-- FEEDBACK -->
+  <section class="feedback" id="feedback">
+    <div class="reveal">
+      <p class="section-label">Workshop Feedback</p>
+      <h2 class="section-title">What participants say about<br><em>The Art of Presentation.</em></h2>
+      <p class="feedback-intro">Anonymous feedback from participants of the workshop on scientific presenting &mdash; covering content, delivery, and impact.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="feedback-categories">
+        <button class="feedback-cat-btn active" onclick="showFeedback('workshop')">Workshop</button>
+        <button class="feedback-cat-btn" onclick="showFeedback('trainer')">Trainer</button>
+      </div>
+
+      <div class="feedback-group" id="feedback-workshop">
+        <div class="feedback-grid">
+          <div class="feedback-card">
+            <p class="feedback-quote">I really enjoyed the questions we should fill out for ourselves. They were vital to learn things about oneself, which happens seldomly nowadays.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">The workshop was really well structured. I would have enjoyed to see a good example and a bad example from papers &mdash; that could have given a really practical benchmark.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">Cognitive mapping of the listener and how to shape it and turn it into an art through various tools was a beautiful idea.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">You taught novel insights about presentations I never heard before in similar sources. How you integrated and motivated people to participate was great.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">Some time to apply the learned methods to an own old presentation would have been helpful to better internalize the things we learned.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">Useful content and good discussion. I liked the effort of bringing high quality printouts.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback-group hidden" id="feedback-trainer">
+        <div class="feedback-grid">
+          <div class="feedback-card">
+            <p class="feedback-quote">The trainer was really effective. I particularly appreciate that he was able to understand when the audience was losing attention and switch to jokes or stories to bring us back on board.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">Trainer is very competent, funny and knows how to read a room and handle discussions which were drifting away respectfully.</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+          <div class="feedback-card">
+            <p class="feedback-quote">Explained concepts, answered questions and led discussion well. Very effective!</p>
+            <p class="feedback-author">Participant</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="reveal">
@@ -997,6 +1145,14 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+    // Feedback category toggle
+    function showFeedback(cat) {
+      document.querySelectorAll('.feedback-group').forEach(function(g) { g.classList.add('hidden'); });
+      document.getElementById('feedback-' + cat).classList.remove('hidden');
+      document.querySelectorAll('.feedback-cat-btn').forEach(function(b) { b.classList.remove('active'); });
+      event.target.classList.add('active');
+    }
+
   </script>
 </body>
 </html>
