@@ -296,6 +296,88 @@
       to { left: 100%; }
     }
 
+    /* GALLERY / IN ACTION */
+    .gallery {
+      padding: 8rem 6rem;
+      background: var(--ink);
+      color: var(--paper);
+      overflow: hidden;
+    }
+    .gallery .section-label { color: var(--gold-light); }
+    .gallery .section-title { color: var(--paper); }
+    .gallery .section-title em { color: var(--gold-light); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 280px;
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: grayscale(30%);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+    .gallery-item .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(14,13,10,0.85) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-event {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--paper);
+      line-height: 1.2;
+    }
+    .gallery-location {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 0.4rem;
+    }
+    /* Span variations for asymmetric grid */
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item.tall { grid-row: span 2; }
+
+    @media (max-width: 900px) {
+      .gallery { padding: 5rem 2.5rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 220px;
+      }
+      .gallery-item.wide { grid-column: span 2; }
+      .gallery-item.tall { grid-row: span 1; }
+    }
+    @media (max-width: 500px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+      }
+      .gallery-item.wide { grid-column: span 1; }
+    }
+
     /* DIVIDER */
     .section-divider {
       height: 1px;
@@ -794,6 +876,7 @@
     <div class="nav-logo">Ananya Singh</div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">In Action</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#topics">Topics</a></li>
       <li><a href="#feedback">Feedback</a></li>
@@ -869,6 +952,86 @@
         <span class="service-icon">✍️</span>
         <h3 class="service-name">Science Writing & Content</h3>
         <p class="service-desc">Articles, blog posts, educational materials. I write with precision and life, free of jargon — for everyone who wants to understand what happens inside the world's labs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN ACTION GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="reveal">
+      <p class="section-label">In Action</p>
+      <h2 class="section-title">Science on <em>every</em> stage.</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item wide">
+        <img src="images/bonn-stage.jpg" alt="Ananya Singh on stage at Bonner Science Slam" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Bonner Science Slam</span>
+          <span class="gallery-location">Pantheon, Bonn</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/pint-crowd.jpg" alt="Pint of Science — crowd interaction" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Pint of Science</span>
+          <span class="gallery-location">Cologne</span>
+        </div>
+      </div>
+      <div class="gallery-item tall">
+        <img src="images/exhibition.jpg" alt="Exhibition poster — Ananya Singh M.Sc." loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Research Exhibition</span>
+          <span class="gallery-location">RWTH Aachen</span>
+        </div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="images/dortmund-stage.jpg" alt="Dortmunder Science Slam group on stage" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Dortmunder Science Slam</span>
+          <span class="gallery-location">Fachhochschule Dortmund</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/munich.jpg" alt="Münchener Science Slam group photo" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Münchener Science Slam</span>
+          <span class="gallery-location">Münchner Kammerspiele</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/pint-venue.jpg" alt="Pint of Science at Tankstelle Cologne" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Pint of Science</span>
+          <span class="gallery-location">Tankstelle, Cologne</span>
+        </div>
+      </div>
+      <div class="gallery-item tall">
+        <img src="images/wiesbaden.jpg" alt="Science Slam Wiesbaden — view from stage" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Science Slam</span>
+          <span class="gallery-location">Wiesbaden</span>
+        </div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="images/dortmund-audience.jpg" alt="Dortmund Science Slam with audience" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Science Slam</span>
+          <span class="gallery-location">Dortmund</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/rwth-auditorium.jpg" alt="RWTH Science Slam in auditorium" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">RWTH Science Slam</span>
+          <span class="gallery-location">RWTH Aachen</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/bonn-group.jpg" alt="Bonner Science Slam group with trophy" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Bonner Science Slam</span>
+          <span class="gallery-location">Pantheon, Bonn</span>
+        </div>
       </div>
     </div>
   </section>
