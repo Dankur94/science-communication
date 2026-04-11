@@ -464,10 +464,6 @@
     /* ABOUT / BIO */
     .about {
       padding: 8rem 6rem;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 8rem;
-      align-items: start;
       background: var(--cream);
     }
     .about-sticky {
@@ -521,6 +517,7 @@
       line-height: 1.5;
       margin-top: 2rem;
       margin-bottom: 2.5rem;
+      max-width: 700px;
     }
     .about-intro em { font-style: italic; color: var(--rust); }
     .about-body {
@@ -528,11 +525,12 @@
       line-height: 2;
       color: var(--muted);
       margin-bottom: 3rem;
+      max-width: 700px;
     }
 
     .awards {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
     .award-item {
@@ -850,9 +848,8 @@
       .services { padding: 5rem 2.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { border-right: none; border-bottom: 1px solid var(--cream); }
-      .about { padding: 5rem 2.5rem; grid-template-columns: 1fr; gap: 3rem; }
-      .about-sticky { position: relative; top: auto; }
-      .about-portrait { max-width: 280px; }
+      .about { padding: 5rem 2.5rem; }
+      .awards { grid-template-columns: 1fr; }
       .credentials { padding: 5rem 2.5rem; }
       .credentials-grid { grid-template-columns: 1fr; gap: 2rem; }
       .topics { padding: 5rem 2.5rem; }
@@ -1033,6 +1030,13 @@
           <span class="gallery-location">Pantheon, Bonn</span>
         </div>
       </div>
+      <div class="gallery-item">
+        <img src="images/pint-stage.jpg" alt="Presenting at Pint of Science Cologne" loading="lazy">
+        <div class="gallery-overlay">
+          <span class="gallery-event">Pint of Science</span>
+          <span class="gallery-location">Tankstelle, Cologne</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1040,21 +1044,9 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="about-sticky">
+    <div class="about-content" style="grid-column: 1 / -1;">
       <div class="reveal">
         <p class="section-label">About me</p>
-        <div class="about-portrait">
-          <div class="portrait-placeholder">
-            <div class="portrait-initials">AS</div>
-            <div class="portrait-label">M.Sc. Ananya Singh</div>
-          </div>
-          <div class="portrait-decoration"></div>
-        </div>
-      </div>
-    </div>
-    <div class="about-content">
-      <div class="reveal">
-        <p class="section-label">Background</p>
         <p class="about-intro">
           Physicist. Lecturer. <em>Storyteller</em><br>
           of the quantum world.
